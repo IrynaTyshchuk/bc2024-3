@@ -25,6 +25,6 @@ if (options.display){
     console.log(data);
 } 
 if (options. output){
-    fs.writeFileSyns(options.output, JSON.stringify(data,null,2));
+    fs.writeFileSync(options.output, JSON.stringify(data,null,2));
     console.log("Result written to ${options.output}");
 }
