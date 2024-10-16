@@ -9,7 +9,7 @@ program.parse();
 
 const options = program.opts();
 
-// Перевірка наявності вхідного файлу
+// Перевірка існування файлу
 if (!options.input) {
   console.error("Please specify an input file.");
   process.exit(1);
@@ -20,13 +20,14 @@ if (!fs.existsSync(options.input)) {
   process.exit(1);
 }
 
-// Зчитування і парсинг вхідного файлу
+// Зчитування вхідного файлу
+const r_data = fs.readFileSync(options.input, "utf8");
+
 let data;
-try {
-  const r_data = fs.readFileSync(options.input, "utf8");
+if (r_data) {
   data = JSON.parse(r_data);
-} catch (error) {
-  console.error("Error reading or parsing JSON:", error.message);
+} else {
+  console.error("Input file is empty or could not be read.");
   process.exit(1);
 }
 
@@ -41,15 +42,15 @@ const minAsset = data.reduce((past, that) => {
   return (past.value < that.value) ? past : that;
 });
 
-// Формування результату
-const result = `${minAsset.txt}: ${minAsset.value}`;
+// Результат
+const res = `${minAsset.txt}: ${minAsset.value}`;
 
 // Виведення або збереження результату
 if (options.display) {
-  console.log(result);
+  console.log(res);
 }
 
 if (options.output) {
-  fs.writeFileSync(options.output, result);
+  fs.writeFileSync(options.output, res);
   console.log(`Result written to ${options.output}`);
 }
