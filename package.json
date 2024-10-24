@@ -1,0 +1,15 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "main": "bc2024-3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bc2024-3"
+  },
+  "author": "IrynaTyshchuk",
+  "license": "ISC",
+  "description": ""
+}
